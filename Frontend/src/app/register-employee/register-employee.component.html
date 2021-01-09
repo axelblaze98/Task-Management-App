@@ -1,0 +1,59 @@
+<div>
+    <div class="wrapper">
+    <h3>Register Employee</h3>
+    </div>
+    <div class="wrapper">
+        <div class="card" style="width:50%">
+            <form #registerEmployee="ngForm" (ngSubmit)="register()">
+                <div class="form-group row">
+                    <label for="employeeFname" class="col-sm-4 col-form-label">First Name<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control"type="text" name="employeeFname" placeholder="Enter Employee's First Name" [(ngModel)]="empInfo.firstName"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="employeeLname" class="col-sm-4 col-form-label">Last Name<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control"  type="text" name="employeeLname" placeholder="Enter Employee's Last Name" [(ngModel)]="empInfo.lastName"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="employeeMobNumber" class="col-sm-4 col-form-label">Mobile Number<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="employeeMobileNumber" placeholder="Enter Employee's Mobile Number" [(ngModel)]="empInfo.mobileNo"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="employeeEmailId" class="col-sm-4 col-form-label">Email Id<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="email" name="employeeEmailId" placeholder="Enter Employee's Email Id" [(ngModel)]="empInfo.email" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="employeeDesignation" class="col-sm-4 col-form-label">Designation
+                    </label>
+                    <div class="col-sm-6">
+                    <select id="inputState" class="form-control" name="employeeDesignation" 
+                    [(ngModel)]="empInfo.designation">
+                        <option selected value="Manager">Manager</option>
+                        <option value="SDE-1">SDE 1</option>
+                        <option value="SDE-2">SDE 2</option>
+                        <option value="Trainee">Traniee</option>
+                        <option value="Intern">Intern</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <button type ="submit" class="form-control btn btn-primary" style="width: 100px;" >Register</button>
+                </div>
+                <div class="wrapper">
+                    <button type ="button" class="form-control btn btn-secondary" style="margin-bottom: 20px; width: 70px;" routerLink="/Teams">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

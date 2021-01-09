@@ -1,0 +1,28 @@
+#logoutBtn{
+    display: inline;
+    float:right;
+    margin-right:50px;
+    margin-top:2px;
+}
+#headerText{
+    display: inline;
+}
+#registerEmployeeBtn{
+    display: inline;
+    float:right;
+    margin-right:10px;
+    margin-top:2px;
+    margin-bottom:15px;
+}
+.container{
+    padding:15px;
+}
+.table{
+    text-align:center;
+}
+.tableBtn{
+    display:inline-block;
+    margin-left:3px;
+    margin-right:3px;
+    height:34px;
+}

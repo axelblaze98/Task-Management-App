@@ -1,0 +1,35 @@
+<div class="container">
+<h1 id="headerText">Hello {{name}}</h1>
+<button id="logoutBtn" type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
+</div>
+<button id="logoutBtn" type="button" class="btn btn-primary " routerLink="/RegisterTeam">Add Team</button>
+<button id="registerEmployeeBtn" class="btn btn-primary" routerLink="/RegisterEmployee">
+    Register Employee
+</button> 
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Team Id</th>
+            <th scope="col">Team Name</th>
+            <th scope="col">Manager Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of Teams;">
+            <td scope="row">{{team.teamId}}</td>
+            <td>{{team.teamName}}</td>
+            <td>{{team.managerName}}</td>
+            <td style="align-items: center">
+              <button type="button" class="btn btn-primary tableBtn" routerLink='/EditTeams' 
+              [state]="{teamId:team.teamId}">Edit</button>
+              <button type="button" class="btn btn-primary tableBtn" (click)="setTeamId(team.teamId)">Details</button>
+              <button type="button" class="btn btn-primary tableBtn" routerLink="/UpdateManager"
+              [state]="{teamId:team.teamId}">Update Manager</button>
+              <button type="button" class="btn btn-primary tableBtn" (click)="delete(team.teamId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

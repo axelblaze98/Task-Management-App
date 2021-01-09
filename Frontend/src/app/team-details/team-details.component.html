@@ -1,0 +1,56 @@
+<div>
+  <h1 style="text-align: center">Team Details</h1>
+</div>
+<div class="container">
+  <div class="card-body">
+    <h5 class="headerText">Team Id: {{teamDetails.teamId}}</h5>
+    <br/>
+    <button id="logoutBtn" type="button" class="btn btn-secondary" (click)="logout()">Logout</button> 
+    <button id="logoutBtn" type="button" class="btn btn-primary" routerLink="/AddTeamMember">Add Member</button>
+    <h5 class="headerText">Team Name: {{teamDetails.teamName}}</h5>
+    <br/>
+    <h5 class="headerText">Manager Name: {{teamDetails.managerName}}</h5>
+    <br/>
+    <h5 class="headerText">Team Location: {{teamDetails.teamLocation}}</h5>
+    <br/>
+    <h5 class="headerText">Application Name: {{teamDetails.applicationName}}</h5>
+    <br/>
+    <h5 class="headerText">Client: {{teamDetails.client}}</h5>
+  </div>
+  </div>
+
+<div class="container">
+  <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Employee Id</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Email Id</th>
+          <th scope="col">Designation</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of Employees">
+          <td scope="row">{{employee.empId}}</td>
+          <td>{{employee.firstName}} {{employee.lastName}}</td>
+          <td>{{employee.mobileNumber}}</td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.designation}}</td>
+          <td style="align-items: center">
+            <button type="button" class="btn btn-primary tableBtn" routerLink="/EditEmployee"
+            [state]="{empId:employee.empId}">Edit</button>
+            <button type="button" class="btn btn-primary tableBtn" (click)="SetEmpId(employee.empId)">
+              Show All Task</button>
+            <button type="button" class="btn btn-primary tableBtn" *ngIf="employee.designation!='Manager'"
+            (click)="delete(employee.empId)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<div>
+<button type ="button" class="btn btn-secondary backButton" style="margin-bottom: 20px; width: 70px;" 
+(click)="removeTeamId()"><Back</button>
+</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+    <h2 id="headerText" >Employee Name: {{empInfo.firstName}} {{empInfo.lastName}}</h2>
+    <button id="logoutBtn" type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
+</div>
+<button id="addTask" type="button" class="btn btn-primary " routerLink="/RegisterTask"
+[state]="{empId:empId}">Add Task</button>
+<div class="container">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Task Id</th>
+            <th scope="col">Task Jira Id</th>
+            <th scope="col">Task Description</th>
+            <th scope="col">Task Current Status</th>
+            <th scope="col">Update Task Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of Tasks">
+            <td scope="row">{{task.taskId}}</td>
+            <td>{{task.taskJiraId}}</td>
+            <td>{{task.taskDescription}}</td>
+            <td>{{task.taskStatus}}</td>
+            <td style="align-items: center">
+                <select id="{{task.taskId}}" class="form-control" style="width:100px ;display: inline"
+                [(ngModel)]="taskStatus">
+                    <option *ngIf="task.taskStatus=='Assigned'">In Progress</option>
+                    <option *ngIf="task.taskStatus=='In Progress'">To Be Approved</option>
+                    <option *ngIf="task.taskStatus=='To Be Approved'">Completed</option>
+                </select>
+                <button type="button" class="btn btn-primary tableBtn" (click)="updateTaskStatus(task.taskId)">
+                  Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<div>
+  <button type ="button" class="btn btn-secondary backButton" style="margin-bottom: 20px; width: 70px;" 
+  (click)="RemoveEmpId()"><Back</button>
+</div>
+</div>

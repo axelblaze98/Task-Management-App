@@ -1,0 +1,33 @@
+#logoutBtn{
+    display: inline;
+    float:right;
+    margin-right:25px;
+    margin-top:3px;
+}
+.container{
+    padding:7px;
+    justify-content: center;
+    
+}
+
+.headerText{
+    font-weight:bold;
+    display: inline;
+}
+.tableBtn{
+    display:inline-block;
+    margin-left:3px;
+    margin-right:3px;
+    height:34px;
+}
+.table{
+    text-align:center;
+}
+.backButton{
+    background:rgb(43, 47, 80);
+    float:right;
+    margin-right:10px;
+}
+.bgg{
+    background-color: rgb(240, 235, 235);
+}

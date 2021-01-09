@@ -1,0 +1,40 @@
+<div>
+    <div class="wrapper">
+    <h3>Register Employee</h3>
+    </div>
+    <div class="wrapper">
+        <div class="card" style="width:50%">
+            <form #registerAdmin= "ngForm" (ngSubmit)="register()">
+                <div class="form-group row">
+                    <label for="adminUsername" class="col-sm-4 col-form-label">User Name<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control"type="text" name="adminUsername" placeholder="Enter Username" 
+                        [(ngModel)]="adminInfo.username"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="adminPassword" class="col-sm-4 col-form-label">Password<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control"  type="password" name="adminPassword" placeholder="Enter Password" [(ngModel)]="adminInfo.password"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="adminName" class="col-sm-4 col-form-label">Full Name<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="adminName" placeholder="Enter Full Name"
+                        [(ngModel)]="adminInfo.fullName"/>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <button type ="submit" class="form-control btn btn-primary" style="width: 100px;">Register</button>
+                </div>
+                <div class="wrapper">
+                    <button type ="button" class="form-control btn btn-secondary" style="margin-bottom: 20px; width: 70px;" routerLink="/">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
