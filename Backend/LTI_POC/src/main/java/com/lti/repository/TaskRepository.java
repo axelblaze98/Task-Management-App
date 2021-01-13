@@ -12,6 +12,4 @@ public interface TaskRepository {
 	public void setTask(Tasks task);
 	public List<Tasks> getEmployeeTask(Employees empInfo);
 	public void updateStatus(int taskId, String updatedStatus);
-	public void deleteTask(Employees empId);
-
 }

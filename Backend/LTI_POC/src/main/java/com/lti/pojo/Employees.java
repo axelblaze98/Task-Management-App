@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="employee_info")
 @NamedQuery(name="isEmployeeEmpty",query="select count(*) from Employees ")
 @NamedQuery(name="getEmpId",query="select max(e.empId) from Employees e")
+@NamedQuery(name="getEmployees",query = "select e from Employees e")
 public class Employees {
 	@Id
 	@Column(length=5)

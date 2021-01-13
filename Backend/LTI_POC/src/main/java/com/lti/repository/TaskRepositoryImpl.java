@@ -60,11 +60,4 @@ public class TaskRepositoryImpl implements TaskRepository {
 		}
 		return emObj.find(Tasks.class, taskId);
 	}
-
-	@Override
-	@Transactional
-	public void deleteTask(Employees empId) {
-		// TODO Auto-generated method stub
-		emObj.createNamedQuery("deleteEmployeeTask").setParameter("empId",empId).executeUpdate();
-	}
 }

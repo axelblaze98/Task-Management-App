@@ -38,10 +38,10 @@ public class TaskServiceImpl implements TaskService {
 		
 		task.setTaskJiraId(taskInfo.getTaskJiraId());
 		task.setTaskDescription(taskInfo.getTaskDescription());
+		task.setTask(taskInfo.getTask());
 		task.setTaskStatus("Assigned");
 		task.setEmpInfo(empRepoObj.getEmployee(empId));
 		
-		System.out.println(task);
 		taskRepoObj.setTask(task);
 	}
 	@Override

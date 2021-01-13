@@ -74,8 +74,7 @@ public class ProjectController {
 			return projectServiceObj.getProjectById(projectId);
 		}
 		catch(ServiceException err) {
-			Projects projectObj = new Projects();
-			return projectObj;
+			 return new Projects();
 		}
 		
 	}

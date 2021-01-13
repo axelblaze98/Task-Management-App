@@ -1,11 +1,14 @@
 package com.lti.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.lti.dto.UpdateEmployeeDto;
 import com.lti.exception.ServiceException;
 import com.lti.pojo.Employees;
 import com.lti.pojo.Projects;
@@ -15,6 +18,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	
 	@PersistenceContext
 	private EntityManager emObj;
+	
+	Employees emp = new Employees();
 	
 	@Transactional
 	@Override
@@ -58,6 +63,24 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 		// TODO Auto-generated method stub
 		project.removeEmployee(emp);
 		emp.removeProject(project);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employees> getEmployees() {
+		// TODO Auto-generated method stub
+		return emObj.createNamedQuery("getEmployees").getResultList();
+	}
+
+	@Override
+	@Transactional
+	public void updateEmployee(Integer empId, UpdateEmployeeDto empInfo) {
+		// TODO Auto-generated method stub
+		emp = getEmployee(empId);
+		emp.setFirstName(empInfo.getFirstName());
+		emp.setLastName(empInfo.getLastName());
+		emp.setEmail(empInfo.getEmailId());
+		emp.setMobileNumber(empInfo.getMobNo());
 	}
 	
 	

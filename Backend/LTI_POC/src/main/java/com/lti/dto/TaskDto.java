@@ -4,11 +4,11 @@ public class TaskDto {
 	
 	String taskJiraId;
 	String taskDescription;
-	
+	String task;
 	public String getTaskJiraId() {
 		return taskJiraId;
 	}
-	public void setTaskJiraID(String taskJiraId) {
+	public void setTaskJiraId(String taskJiraId) {
 		this.taskJiraId = taskJiraId;
 	}
 	public String getTaskDescription() {
@@ -17,11 +17,16 @@ public class TaskDto {
 	public void setTaskDescription(String taskDescription) {
 		this.taskDescription = taskDescription;
 	}
+	public String getTask() {
+		return task;
+	}
+	public void setTask(String task) {
+		this.task = task;
+	}
 	@Override
 	public String toString() {
-		return "TaskDto [taskJiraID=" + taskJiraId + ", taskDescription=" + taskDescription + "]";
+		return "TaskDto [taskJiraId=" + taskJiraId + ", taskDescription=" + taskDescription + ", task=" + task + "]";
 	}
-	
 	
 	
 }
