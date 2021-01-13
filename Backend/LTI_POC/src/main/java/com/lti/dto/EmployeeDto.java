@@ -6,6 +6,7 @@ public class EmployeeDto {
 	private String email;
 	private String mobileNo;
 	private String designation;
+	private int projectId;
 	
 	public String getFirstName() {
 		return firstName;
@@ -37,12 +38,10 @@ public class EmployeeDto {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	@Override
-	public String toString() {
-		return "EmployeeDto [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", mobileNo="
-				+ mobileNo + ", designation=" + designation + "]";
+	public int getProjectId() {
+		return projectId;
 	}
-	
-	
-	
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}	
 }

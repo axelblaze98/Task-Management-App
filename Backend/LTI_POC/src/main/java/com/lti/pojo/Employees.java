@@ -1,29 +1,26 @@
 package com.lti.pojo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="employee_info")
 @NamedQuery(name="isEmployeeEmpty",query="select count(*) from Employees ")
 @NamedQuery(name="getEmpId",query="select max(e.empId) from Employees e")
-@NamedQuery(name="updateBench",query="update Employees set teamInfo=:bench where teamInfo=:id")
-@NamedQuery(name="getEmployeesOfTeam",query="select e from Employees e where e.teamInfo=:teamId")
-@NamedQuery(name="getBenchedManagers",query="select e from Employees e where e.teamInfo=:teamId and e.designation='Manager'")
-@NamedQuery(name="getBenchedEmployees",query="select e from Employees e where e.teamInfo=:teamId and e.designation!='Manager'")
 public class Employees {
 	@Id
 	@Column(length=5)
 	private Integer empId;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="teamId",nullable=false)
-	private Teams teamInfo;
 	@Column(length=15,nullable = false)
 	private String firstName;
 	@Column(length=15,nullable=false)
@@ -34,17 +31,27 @@ public class Employees {
 	private String mobileNumber;
 	@Column(length=15,nullable=false)
 	private String designation;
+	@ManyToMany(mappedBy = "employees")
+	@JsonIgnore
+	private Set<Projects> projects = new HashSet<>();
+	
+	public void addProject(Projects project) {
+		this.projects.add(project);
+	}
+	public void removeProject(Projects project) {
+		this.projects.remove(project);
+	}
+	public Set<Projects> getProjects() {
+		return this.projects;
+	}
+	public void setProjects(Set<Projects> projects) {
+		this.projects = projects;
+	}
 	public Integer getEmpId() {
 		return empId;
 	}
 	public void setEmpId(Integer empId) {
 		this.empId = empId;
-	}
-	public Teams getTeamId() {
-		return teamInfo;
-	}
-	public void setTeamId(Teams teamId) {
-		this.teamInfo = teamId;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -78,8 +85,8 @@ public class Employees {
 	}
 	@Override
 	public String toString() {
-		return "Employees [empId=" + empId + ", teamInfo=" + teamInfo + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", mobileNumber=" + mobileNumber + ", designation=" + designation
-				+ "]";
+		return "Employees [empId=" + empId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", mobileNumber=" + mobileNumber + ", designation=" + designation + ", projects=" + projects + "]";
 	}
+	
 }

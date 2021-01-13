@@ -15,29 +15,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.dto.TeamDto;
-import com.lti.dto.UpdateTeamDto;
+import com.lti.dto.ProjectDto;
+import com.lti.dto.UpdateProjectDto;
 import com.lti.exception.ServiceException;
-import com.lti.pojo.Teams;
-import com.lti.service.TeamService;
+import com.lti.pojo.Projects;
+import com.lti.service.ProjectService;
 import com.lti.status.Status;
 import com.lti.status.Status.statusType;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
-public class TeamController {
+public class ProjectController {
 	
 	@Autowired
-	private TeamService teamServiceObj;
+	private ProjectService projectServiceObj;
 	
 	private Status status = new Status();
 	
-	@PostMapping(path="addTeam")
-	public Status addTeam(@RequestBody TeamDto teamInfo) {
+	@PostMapping(path="addProject")
+	public Status addProject(@RequestBody ProjectDto projectInfo) {
 		try {
-		teamServiceObj.addTeam(teamInfo);
+		projectServiceObj.addProject(projectInfo);
 		status.setStatus(statusType.SUCCESS);
-		status.setMessage("Team Added Successfully");
+		status.setMessage("Project Added Successfully");
 		return status;
 		}
 		catch(ServiceException err) {
@@ -47,12 +47,12 @@ public class TeamController {
 		}
 	}
 	
-	@DeleteMapping(path="deleteTeam")
-	public Status deleteTeam(@RequestParam int teamId) {
+	@DeleteMapping(path="deleteProject")
+	public Status deleteProject(@RequestParam int projectId) {
 		try{
-			teamServiceObj.deleteTeam(teamId);
+			projectServiceObj.deleteProject(projectId);
 			status.setStatus(statusType.SUCCESS);
-			status.setMessage("Teams Data Successfully Deleted");
+			status.setMessage("Projects Data Successfully Deleted");
 			return status;
 			}
 		catch(ServiceException err) {
@@ -62,44 +62,30 @@ public class TeamController {
 		}
 	}
 	
-	@GetMapping(path="getTeams")
-	public List<Teams> getTeams(){
-		return teamServiceObj.getAllTeams();
+	@GetMapping(path="getProjects")
+	public List<Projects> getProjects(){
+		return projectServiceObj.getAllProjects();
 		
 	}
 	
-	@GetMapping(path="getTeam/{teamId}")
-	public Teams getTeamById(@PathVariable Integer teamId) {
+	@GetMapping(path="getProject/{projectId}")
+	public Projects getProjectById(@PathVariable Integer projectId) {
 		try{
-			return teamServiceObj.getTeamById(teamId);
+			return projectServiceObj.getProjectById(projectId);
 		}
 		catch(ServiceException err) {
-			Teams teamObj = new Teams();
-			return teamObj;
+			Projects projectObj = new Projects();
+			return projectObj;
 		}
 		
 	}
 
-	@PutMapping(path="updateTeamDetails")
-	public Status updateTeamDetails(@RequestBody UpdateTeamDto teamInfo,@RequestParam Integer teamId) {
+	@PutMapping(path="updateProjectDetails")
+	public Status updateProjectDetails(@RequestBody UpdateProjectDto projectInfo,@RequestParam Integer projectId) {
 		try {
-			teamServiceObj.updateTeamDetails(teamInfo,teamId);
+			projectServiceObj.updateProjectDetails(projectInfo,projectId);
 			status.setStatus(statusType.SUCCESS);
-			status.setMessage("Team Information Updated");
-			return status;
-		}
-		catch(ServiceException err) {
-			status.setMessage(err.getMessage());
-			status.setStatus(statusType.FAILURE);
-			return status;
-		}
-	}
-	@PutMapping(path="updateManager")
-	public Status updateManager(@RequestParam Integer managerId,@RequestParam Integer teamId) {
-		try {
-			teamServiceObj.updateManager(managerId,teamId);
-			status.setMessage("Manager Updated");
-			status.setStatus(statusType.SUCCESS);
+			status.setMessage("Project Information Updated");
 			return status;
 		}
 		catch(ServiceException err) {

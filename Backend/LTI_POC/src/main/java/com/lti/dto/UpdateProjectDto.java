@@ -1,10 +1,10 @@
 package com.lti.dto;
 
-public class UpdateTeamDto {
+public class UpdateProjectDto {
 	
 	String applicationName;
 	String clientName;
-	String teamName;
+	String projectName;
 	
 	public String getApplicationName() {
 		return applicationName;
@@ -18,16 +18,16 @@ public class UpdateTeamDto {
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
-	public String getTeamName() {
-		return teamName;
+	public String getProjectName() {
+		return projectName;
 	}
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
+	public void setProjectName(String teamName) {
+		this.projectName = teamName;
 	}
 	@Override
 	public String toString() {
 		return "UpdateTeamDto [applicationName=" + applicationName + ", clientName=" + clientName + ", teamName="
-				+ teamName + "]";
+				+ projectName + "]";
 	}
 	
 }

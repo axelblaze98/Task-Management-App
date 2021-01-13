@@ -1,45 +1,26 @@
 package com.lti.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.lti.dto.UpdateEmployeeDto;
 import com.lti.exception.ServiceException;
 import com.lti.pojo.Employees;
-import com.lti.pojo.Teams;
+import com.lti.pojo.Projects;
 
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 	
 	@PersistenceContext
 	private EntityManager emObj;
-	private Employees emp = new Employees();
 	
 	@Transactional
 	@Override
 	public void register(Employees empInfo) {
 		// TODO Auto-generated method stub
 		emObj.persist(empInfo);
-	}
-	
-	public Employees getEmployee(int empId) {
-		if(emObj.find(Employees.class,empId)==null) {
-			throw new ServiceException("Employee Doesn't Exist");
-		}
-		
-		return emObj.find(Employees.class,empId);
-	}
-	@Override
-	public String getEmployeeNameById(int empId) {
-		// TODO Auto-generated method stub
-		emp = getEmployee(empId);
-		return emp.getFirstName()+" "+emp.getLastName();
 	}
 
 	@Override
@@ -55,73 +36,29 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 	}
 
 	@Override
-	@Transactional
-	public void updateTeamId(int empId,Teams teamInfo) {
+	public Employees getEmployee(int empId) {
 		// TODO Auto-generated method stub
-		emp = getEmployee(empId);
-		emp.setTeamId(teamInfo);
+		if(emObj.find(Employees.class, empId)==null) {
+			throw new ServiceException("Employee Doesn't Exist");
+		}
+		return emObj.find(Employees.class, empId);
 	}
 
 	@Override
 	@Transactional
-	public void moveToBench(Teams bench,Teams deletedTeam) {
+	public void addEmployeeToProject(Projects project, Employees emp) {
 		// TODO Auto-generated method stub
-		
-		emObj.createNamedQuery("updateBench")
-		.setParameter("bench", bench)
-		.setParameter("id", deletedTeam)
-		.executeUpdate();
-	}
-
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Employees> getTeamEmployees(Teams teamId) {
-		// TODO Auto-generated method stub
-		return (List<Employees>)emObj.createNamedQuery("getEmployeesOfTeam").setParameter("teamId", teamId).getResultList();
-	}
-
-	@Override
-	public String getEmployeeDesignation(int empId) {
-		// TODO Auto-generated method stub
-		emp = getEmployee(empId);
-		return emp.getDesignation();
-		
-	}
-
-	@Override
-	public int getTeamId(int empId) {
-		// TODO Auto-generated method stub
-		emp= getEmployee(empId);
-		return emp.getTeamId().getTeamId();
+		project.addEmployee(emp);
+		emp.addProject(project);
 	}
 
 	@Override
 	@Transactional
-	public void updateEmployeeInfo(int empId, UpdateEmployeeDto empInfo) {
+	public void deleteEmployeeFromProject(Projects project, Employees emp) {
 		// TODO Auto-generated method stub
-		emp = getEmployee(empId);
-		
-		emp.setFirstName(empInfo.getFirstName());
-		emp.setLastName(empInfo.getLastName());
-		emp.setMobileNumber(empInfo.getMobNo());
-		emp.setEmail(empInfo.getEmailId());
+		project.removeEmployee(emp);
+		emp.removeProject(project);
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<Employees> getBenchManagers(Teams teamId) {
-		// TODO Auto-generated method stub
-		return (ArrayList<Employees>)emObj.createNamedQuery("getBenchedManagers").setParameter("teamId", teamId).getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<Employees> getBenchedEmployees(Teams teamId) {
-		// TODO Auto-generated method stub
-		return (ArrayList<Employees>)emObj.createNamedQuery("getBenchedEmployees").setParameter("teamId", teamId).getResultList();
-	}
-	
 	
 	
 }
