@@ -57,4 +57,9 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return projectRepoObj.getProjectById(projectId);
 	}
+	@Override
+	public void updateSprint(int projectId, String sprint) {
+		// TODO Auto-generated method stub
+		projectRepoObj.updateSprint(projectId,sprint);
+	}
 }

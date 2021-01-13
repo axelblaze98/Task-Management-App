@@ -75,4 +75,12 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		project.setProjectName(projectInfo.getProjectName());
 		
 	}
+
+	@Override
+	@Transactional
+	public void updateSprint(int projectId, String sprint) {
+		// TODO Auto-generated method stub
+		project=getProjectById(projectId);
+		project.setSprint(sprint);
+	}
 }

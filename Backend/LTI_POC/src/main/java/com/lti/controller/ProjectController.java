@@ -93,4 +93,18 @@ public class ProjectController {
 			return status;
 		}
 	}
+	@PutMapping(path="updateSprint")
+	public Status updateSprint(@RequestParam int projectId,@RequestParam String sprint) {
+		try {
+			projectServiceObj.updateSprint(projectId,sprint);
+			status.setStatus(statusType.SUCCESS);
+			status.setMessage("Project Sprint Updated");
+			return status;
+		}
+		catch(ServiceException err) {
+			status.setMessage(err.getMessage());
+			status.setStatus(statusType.FAILURE);
+			return status;
+		}
+	}
 }
