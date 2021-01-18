@@ -11,23 +11,22 @@ export class AddTeamMemberComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  benchedEmployees;
+  employees;
   employeeId:number;
-  teamId:string;
+  projectId:string;
 
   ngOnInit(): void {
-    this.teamId=sessionStorage.getItem('teamId');
-    this.http.get<any>("http://localhost:8086/getBenchedEmployees")
+    this.projectId=sessionStorage.getItem('projectId');
+    this.http.get<any>("http://localhost:8086/getEmployees?projectId="+this.projectId)
     .subscribe(
       res=>{
-        console.log(res);
-        this.benchedEmployees=res;
+        this.employees=res;
       }
     )
   }
 
   update(){
-    this.http.put<Status>("http://localhost:8086/addEmployee?teamId="+this.teamId+"&empId="+this.employeeId,{})
+    this.http.put<Status>("http://localhost:8086/addEmployeeToProject?empId="+this.employeeId+"&projectId="+this.projectId,{})
     .subscribe(
       res=>{
         alert(res.message);

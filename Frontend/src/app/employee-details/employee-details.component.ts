@@ -20,7 +20,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.empId=sessionStorage.getItem('empId');
-    this.http.get<Employees>("http://localhost:8086/getEmployee?empId="+this.empId)
+    this.http.get<Employees>("http://localhost:8086/employee/"+this.empId)
     .subscribe(
       (res)=>{
         this.empInfo=res;

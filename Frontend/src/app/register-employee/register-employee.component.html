@@ -34,16 +34,28 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="employeeDesignation" class="col-sm-4 col-form-label">Designation
+                    <label for="employeeDesignation" class="col-sm-4 col-form-label">Designation<span style="color:red">*</span>
                     </label>
                     <div class="col-sm-6">
                     <select id="inputState" class="form-control" name="employeeDesignation" 
                     [(ngModel)]="empInfo.designation">
-                        <option selected value="Manager">Manager</option>
+                        <option value="Manager">Manager</option>
                         <option value="SDE-1">SDE 1</option>
                         <option value="SDE-2">SDE 2</option>
                         <option value="Trainee">Traniee</option>
                         <option value="Intern">Intern</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="team" class="col-sm-4 col-form-label">Teams<span style="color:red" >*</span>
+                    </label>
+                    <div class="col-sm-6">
+                    <select id="team" class="form-control" name="employeeTeam" 
+                    [(ngModel)]="empInfo.projectId">
+                        <option value={{project.projectId}} *ngFor="let project of projects">
+                            {{project.projectId}}
+                        </option>
                     </select>
                     </div>
                 </div>

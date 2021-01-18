@@ -25,7 +25,7 @@ import com.lti.status.Status;
 import com.lti.status.Status.statusType;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
+@CrossOrigin(origins = "http://localhost:4200",methods = {RequestMethod.DELETE,RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class EmployeeController {
 	
 	@Autowired

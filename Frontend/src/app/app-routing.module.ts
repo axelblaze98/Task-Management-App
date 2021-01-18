@@ -7,7 +7,6 @@ import { RegisterTaskComponent } from './register-task/register-task.component';
 import { TeamsInfoComponent } from './teams-info/teams-info.component';
 import { EditTeamDetailsComponent } from './edit-team-details/edit-team-details.component';
 import { TeamDetailsComponent } from './team-details/team-details.component';
-import { UpdateManagerComponent } from './update-manager/update-manager.component';
 import { EditEmployeesComponent } from './edit-employees/edit-employees.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path:'Teams',component: TeamsInfoComponent,canActivate:[AuthGuard]},
   {path:'EditTeams',component:EditTeamDetailsComponent,canActivate:[AuthGuard]},
   {path:'TeamDetails',component:TeamDetailsComponent,canActivate:[AuthGuard]},
-  {path:'UpdateManager',component:UpdateManagerComponent,canActivate:[AuthGuard]},
   {path:'EditEmployee',component:EditEmployeesComponent,canActivate:[AuthGuard]},
   {path:'Tasks',component:EmployeeDetailsComponent,canActivate:[AuthGuard]},
   {path:'AddTeamMember',component:AddTeamMemberComponent,canActivate:[AuthGuard]},
@@ -37,5 +35,5 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents=[MainpageComponent,RegisterEmployeeComponent,RegisterTeamComponent,RegisterTaskComponent,TeamsInfoComponent,EditTeamDetailsComponent,TeamDetailsComponent,UpdateManagerComponent,
+export const routingComponents=[MainpageComponent,RegisterEmployeeComponent,RegisterTeamComponent,RegisterTaskComponent,TeamsInfoComponent,EditTeamDetailsComponent,TeamDetailsComponent,
 EditEmployeesComponent,EmployeeDetailsComponent,AddTeamMemberComponent,RegisterAdminComponent];

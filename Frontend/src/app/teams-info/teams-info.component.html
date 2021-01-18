@@ -10,24 +10,20 @@
     <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Team Id</th>
-            <th scope="col">Team Name</th>
-            <th scope="col">Manager Name</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Sprint</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let team of Teams;">
-            <td scope="row">{{team.teamId}}</td>
-            <td>{{team.teamName}}</td>
-            <td>{{team.managerName}}</td>
+          <tr *ngFor="let project of Projects;">
+            <td scope="row">{{project.projectName}}</td>
+            <td>{{project.sprint}}</td>
             <td style="align-items: center">
               <button type="button" class="btn btn-primary tableBtn" routerLink='/EditTeams' 
-              [state]="{teamId:team.teamId}">Edit</button>
-              <button type="button" class="btn btn-primary tableBtn" (click)="setTeamId(team.teamId)">Details</button>
-              <button type="button" class="btn btn-primary tableBtn" routerLink="/UpdateManager"
-              [state]="{teamId:team.teamId}">Update Manager</button>
-              <button type="button" class="btn btn-primary tableBtn" (click)="delete(team.teamId)">Delete</button>
+              [state]="{projectId:project.projectId}">Edit</button>
+              <button type="button" class="btn btn-primary tableBtn" (click)="setTeamId(project.projectId)">Details</button>
+              <button type="button" class="btn btn-primary tableBtn" (click)="delete(project.projectId)">Delete</button>
             </td>
           </tr>
         </tbody>

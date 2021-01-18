@@ -5,6 +5,7 @@ export class RegisterEmployee{
     email:string;
     mobileNo:string;
     designation:string;
+    projectId:number;
 }
 
 export class Status{
@@ -12,29 +13,28 @@ export class Status{
     message:string;
 }
 
-export class RegisterTeam{
-    teamName:string;
+export class RegisterProject{
+    projectName:string;
     applicationName:string;
-    teamLocation:string;
-    teamManagerId:string;
+    projectLocation:string;
     client:string;
 }
 
-export class UpdateTeam{
-    teamName:string;
+export class UpdateProject{
+    projectName:string;
     clientName:string;
     applicationName:string;
 }
 
-export class Teams{
-    teamId:number;
-    teamName:string;
+export class Projects{
+    projectId:number;
+    projectName:string;
     applicationName:string;
-    managerId:number;
-    managerName:string;
-    teamLocation:string;
+    projectLocation:string;
     client:string;
     status:string;
+    sprint:string;
+    employees:Employees;
 }
 
 export class UpdateEmployee{
@@ -51,7 +51,6 @@ export class Employees{
     email: string;
     mobileNumber:string;
     designation: string;
-    teamId: string;
 }
 
 export class AddTask{

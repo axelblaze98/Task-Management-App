@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Teams,Status } from '../classes';
+import { Projects,Status } from '../classes';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -14,32 +14,27 @@ export class TeamDetailsComponent implements OnInit {
   constructor(private http: HttpClient,private router:Router,
     private _authService:AuthService) { }
   
-  teamId:string;
-  teamDetails:Teams = new Teams();
-  Employees;
+  projectId:string;
+  projectDetails:Projects = new Projects();
   isButtonHidden=false;
 
   ngOnInit(): void {
-    this.teamId=sessionStorage.getItem('teamId');
-    this.http.get<Teams>("http://localhost:8086/getTeam/"+this.teamId)
+    this.projectId=sessionStorage.getItem('projectId');
+    this.http.get<Projects>("http://localhost:8086/getProject/"+this.projectId)
     .subscribe(
       res=>{
-        this.teamDetails=res;
+        this.projectDetails=res;
       }
     )
-    this.GetEmployees();
   }
 
   delete(empId){
-    this.http.put<Status>("http://localhost:8086/removeEmployee?empId="+empId,{})
+    this.http.delete<Status>("http://localhost:8086/removeEmployeeFromProject?empId="+empId+"&projectId="+this.projectId)
     .subscribe(res=>{
-      console.log(res)
-      if(res.status=='SUCCESS'){
-        this.GetEmployees()
+      if(res.status=="SUCCESS"){
+        this.ngOnInit();
       }
-      else{
-        alert(res.message);
-      }
+      else alert(res.message);
     })
   }
   
@@ -52,15 +47,6 @@ export class TeamDetailsComponent implements OnInit {
     sessionStorage.setItem('empId',empId);
     this.router.navigate(['Tasks'])
   }
-
-  GetEmployees(){
-    this.http.get("http://localhost:8086/getEmployeeByTeam?teamId="+this.teamId)
-    .subscribe(
-      res=>{
-        this.Employees=res;
-      })
-    }
-
     logout() {
       this._authService.logout();
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Teams,Status} from '../classes';
+import {Projects,Status} from '../classes';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -13,7 +13,7 @@ export class TeamsInfoComponent implements OnInit {
 
   constructor(private http: HttpClient,private router:Router,private _authService:AuthService) { }
 
-  Teams:Teams;
+  Projects:Projects;
   name:string;
 
   ngOnInit(): void {
@@ -21,13 +21,13 @@ export class TeamsInfoComponent implements OnInit {
     this.GetTeam(); 
   }
   
-  setTeamId(teamId){
-    sessionStorage.setItem('teamId',teamId);
+  setTeamId(projectId){
+    sessionStorage.setItem('projectId',projectId);
     this.router.navigate(['TeamDetails']);
   }
 
-  delete(teamId){
-    this.http.delete<Status>("http://localhost:8086/deleteTeam?teamId="+teamId)
+  delete(projectId){
+    this.http.delete<Status>("http://localhost:8086/deleteTeam?teamId="+projectId)
     .subscribe(
       res=>{
         if(res.status=='SUCCESS'){
@@ -41,10 +41,10 @@ export class TeamsInfoComponent implements OnInit {
   }
    
   GetTeam(){
-    this.http.get<any>('http://localhost:8086/getTeams')
+    this.http.get<any>('http://localhost:8086/getProjects')
     .subscribe(
       data=>{
-        this.Teams=data;
+        this.Projects=data;
       }
     )
   }

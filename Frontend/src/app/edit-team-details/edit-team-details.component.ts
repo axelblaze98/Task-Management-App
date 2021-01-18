@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { UpdateTeam,Status} from '../classes';
+import { Status, UpdateProject} from '../classes';
 
 @Component({
   selector: 'app-edit-team-details',
@@ -12,24 +12,24 @@ export class EditTeamDetailsComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   //All Declarations
-  teamId: number;
-  updateTeamInfo:UpdateTeam = new UpdateTeam();
+  projectId: number;
+  updateProjectInfo:UpdateProject = new UpdateProject();
 
   ngOnInit(): void {
-    this.teamId=history.state.teamId;
-    console.log(this.teamId);
-    this.http.get<any>("http://localhost:8086/getTeam/"+this.teamId)
+    this.projectId=history.state.projectId;
+    console.log(this.projectId);
+    this.http.get<any>("http://localhost:8086/getProject/"+this.projectId)
     .subscribe(
       res=>{
-        this.updateTeamInfo.teamName=res.teamName;
-        this.updateTeamInfo.applicationName=res.applicationName;
-        this.updateTeamInfo.clientName=res.client;
+        this.updateProjectInfo.projectName=res.projectName;
+        this.updateProjectInfo.applicationName=res.applicationName;
+        this.updateProjectInfo.clientName=res.client;
       }
     )
   }
 
   update(){
-    this.http.put<Status>("http://localhost:8086/updateTeamDetails?teamId="+this.teamId,this.updateTeamInfo)
+    this.http.put<Status>("http://localhost:8086/updateProjectDetails?projectId="+this.projectId,this.updateProjectInfo)
     .subscribe(res=>{
       alert(res.message);
     })

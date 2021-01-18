@@ -16,7 +16,7 @@ export class EditEmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.empId=history.state.empId;
-    this.http.get<any>("http://localhost:8086/getEmployee?empId="+this.empId)
+    this.http.get<any>("http://localhost:8086/employee/"+this.empId)
     .subscribe((res)=>{
       this.empDetails.firstName=res.firstName;
       this.empDetails.lastName=res.lastName;

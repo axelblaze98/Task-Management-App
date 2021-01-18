@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { RegisterEmployee,Status } from '../classes';
+import { RegisterEmployee,Projects,Status } from '../classes';
 
 @Component({
   selector: 'app-register-employee',
@@ -9,14 +9,21 @@ import { RegisterEmployee,Status } from '../classes';
 })
 export class RegisterEmployeeComponent implements OnInit {
 
+  projects;
+  empInfo:RegisterEmployee = new RegisterEmployee();
   constructor(private http: HttpClient) { }
-
   ngOnInit(): void {
+    this.http.get<Projects>("http://localhost:8086/getProjects")
+    .subscribe(res => {
+      this.projects= res;
+      console.log(this.projects);
+    })
   }
 
-  empInfo:RegisterEmployee = new RegisterEmployee();
+
 
   register(){
+    console.log(this.empInfo);
     this.http.post<Status>("http://localhost:8086/registerEmployee",this.empInfo)
     .subscribe(res =>{
       alert(res.message);

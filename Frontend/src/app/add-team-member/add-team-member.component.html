@@ -11,8 +11,8 @@
                     <div class="col-sm-6">
                     <select id="inputState" class="form-control" name="employeeId" 
                     [(ngModel)]="employeeId">
-                        <option value={{employee.employeeId}} *ngFor="let employee of benchedEmployees">
-                            {{employee.employeeId}},{{employee.employeeName}}</option>
+                        <option value={{employee.empId}} *ngFor="let employee of employees">
+                            {{employee.empId}},{{employee.firstName}} {{employee.lastName}}</option>
                     </select>
                     </div>
                 </div>
