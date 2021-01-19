@@ -30,6 +30,7 @@ export class AddTeamMemberComponent implements OnInit {
     .subscribe(
       res=>{
         alert(res.message);
+        this.ngOnInit();
       }
     )
   }

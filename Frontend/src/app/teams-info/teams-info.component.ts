@@ -15,7 +15,8 @@ export class TeamsInfoComponent implements OnInit {
 
   Projects:Projects;
   name:string;
-  projectSprint:String
+  projectSprint:String;
+  updateBtn:boolean=false;
 
   ngOnInit(): void {
     this.name=sessionStorage.getItem('name');
@@ -28,7 +29,7 @@ export class TeamsInfoComponent implements OnInit {
   }
 
   delete(projectId){
-    this.http.delete<Status>("http://localhost:8086/deleteTeam?teamId="+projectId)
+    this.http.delete<Status>("http://localhost:8086/deleteProject?projectId="+projectId)
     .subscribe(
       res=>{
         if(res.status=='SUCCESS'){
@@ -45,7 +46,6 @@ export class TeamsInfoComponent implements OnInit {
     this.http.get<any>('http://localhost:8086/getProjects')
     .subscribe(
       data=>{
-        console.log(data);
         this.Projects=data;
       }
     )
@@ -56,6 +56,7 @@ export class TeamsInfoComponent implements OnInit {
   }
 
   updateSprint(projectId){
+    if(this.updateBtn){
     this.http.put<Status>("http://localhost:8086/updateSprint?projectId="+projectId+"&sprint="+this.projectSprint,{})
     .subscribe((res)=>{
       if(res.status=="SUCCESS"){
@@ -63,7 +64,10 @@ export class TeamsInfoComponent implements OnInit {
         this.GetTeam();
       }
       else alert(res.message);
+      this.updateBtn=!this.updateBtn;
     })
+  }
+  else this.updateBtn=!this.updateBtn;
   }
 
 }

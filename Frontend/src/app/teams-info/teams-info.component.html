@@ -21,8 +21,8 @@
             <td scope="row">{{project.projectName}}</td>
             <td>{{project.sprint}}</td>
             <td style="align-items: center">
-              <select id="{{project.projectId}}" class="form-control" style="width:100px ;display: inline"
-              [(ngModel)]="projectSprint">
+              <select id={{project.projectId}} class="form-control" style="width:100px ;display: inline"
+              [(ngModel)]="projectSprint" name="P{{project.projectId}}" *ngIf="updateBtn">
                   <option >Sprint Two</option>
                   <option >Sprint Three</option>
                   <option >Sprint Four</option>

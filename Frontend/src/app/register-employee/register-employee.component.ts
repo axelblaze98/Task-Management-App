@@ -16,7 +16,6 @@ export class RegisterEmployeeComponent implements OnInit {
     this.http.get<Projects>("http://localhost:8086/getProjects")
     .subscribe(res => {
       this.projects= res;
-      console.log(this.projects);
     })
   }
 

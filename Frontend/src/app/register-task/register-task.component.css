@@ -13,6 +13,7 @@
     margin-top:10px;
     margin-left:60px;
 }
-.btn-secondary{
-    background:rgb(43, 47, 80);
+.btn-danger,.btn-danger:active{
+    background:rgb(43, 47, 80)!important;
+    border-color:rgb(43, 47, 80)!important;
 }

@@ -17,7 +17,6 @@ export class EditTeamDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectId=history.state.projectId;
-    console.log(this.projectId);
     this.http.get<any>("http://localhost:8086/getProject/"+this.projectId)
     .subscribe(
       res=>{
