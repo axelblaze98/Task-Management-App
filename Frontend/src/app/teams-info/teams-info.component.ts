@@ -56,7 +56,12 @@ export class TeamsInfoComponent implements OnInit {
   }
 
   updateSprint(projectId){
+    
     if(this.updateBtn){
+    if(this.projectSprint==undefined){
+        alert("Select a Sprint")
+    }
+    else{
     this.http.put<Status>("http://localhost:8086/updateSprint?projectId="+projectId+"&sprint="+this.projectSprint,{})
     .subscribe((res)=>{
       if(res.status=="SUCCESS"){
@@ -66,6 +71,7 @@ export class TeamsInfoComponent implements OnInit {
       else alert(res.message);
       this.updateBtn=!this.updateBtn;
     })
+  }
   }
   else this.updateBtn=!this.updateBtn;
   }

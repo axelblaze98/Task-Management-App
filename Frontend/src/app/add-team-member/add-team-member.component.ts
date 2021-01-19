@@ -26,6 +26,10 @@ export class AddTeamMemberComponent implements OnInit {
   }
 
   update(){
+    if(this.employeeId==undefined){
+      alert("Select the Employee to be added")
+    }
+    else{
     this.http.put<Status>("http://localhost:8086/addEmployeeToProject?empId="+this.employeeId+"&projectId="+this.projectId,{})
     .subscribe(
       res=>{
@@ -34,5 +38,6 @@ export class AddTeamMemberComponent implements OnInit {
       }
     )
   }
+}
 
 }
