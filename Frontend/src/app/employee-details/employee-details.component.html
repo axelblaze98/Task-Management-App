@@ -8,22 +8,22 @@
     <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Task Id</th>
             <th scope="col">Task Jira Id</th>
             <th scope="col">Task Description</th>
+            <th scope="col" style="width:20%">Task</th>
             <th scope="col">Task Current Status</th>
             <th scope="col">Update Task Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let task of Tasks">
-            <td scope="row">{{task.taskId}}</td>
             <td>{{task.taskJiraId}}</td>
             <td>{{task.taskDescription}}</td>
+            <td>{{task.task}}</td>
             <td>{{task.taskStatus}}</td>
             <td style="align-items: center">
                 <select id="{{task.taskId}}" class="form-control" style="width:100px ;display: inline"
-                [(ngModel)]="taskStatus">
+                [(ngModel)]="taskStatus" *ngIf="statusBtn">
                     <option *ngIf="task.taskStatus=='Assigned'">In Progress</option>
                     <option *ngIf="task.taskStatus=='In Progress'">To Be Approved</option>
                     <option *ngIf="task.taskStatus=='To Be Approved'">Completed</option>

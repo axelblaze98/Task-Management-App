@@ -17,6 +17,7 @@ export class EmployeeDetailsComponent implements OnInit {
   empInfo:Employees = new Employees();
   Tasks;
   taskStatus;
+  statusBtn:boolean=false;
 
   ngOnInit(): void {
     this.empId=sessionStorage.getItem('empId');
@@ -29,6 +30,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   updateTaskStatus(taskId){
+    if(this.statusBtn){
     this.http.put<Status>("http://localhost:8086/updateTaskStatus?taskId="+taskId+"&updatedStatus="+this.taskStatus,{})
     .subscribe((res)=>{
       if(res.status=='SUCCESS'){
@@ -36,7 +38,10 @@ export class EmployeeDetailsComponent implements OnInit {
         this.GetTask();
       }
       else alert(res.message);
+      this.statusBtn =!this.statusBtn;
     })
+  }
+  else this.statusBtn=!this.statusBtn;
   }
 
   GetTask(){

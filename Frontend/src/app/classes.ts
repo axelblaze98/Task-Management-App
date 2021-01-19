@@ -56,6 +56,7 @@ export class Employees{
 export class AddTask{
     taskJiraId:string;
     taskDescription:string;
+    task:string;
 }
 
 export class RegisterAdmin{
