@@ -94,9 +94,9 @@ public class ProjectController {
 		}
 	}
 	@PutMapping(path="updateSprint")
-	public Status updateSprint(@RequestParam int projectId,@RequestParam String sprint) {
+	public Status updateSprint(@RequestParam int projectId) {
 		try {
-			projectServiceObj.updateSprint(projectId,sprint);
+			projectServiceObj.updateSprint(projectId);
 			status.setStatus(statusType.SUCCESS);
 			status.setMessage("Project Sprint Updated");
 			return status;

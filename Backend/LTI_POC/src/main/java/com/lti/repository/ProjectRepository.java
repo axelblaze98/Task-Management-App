@@ -14,6 +14,6 @@ public interface ProjectRepository {
 	public boolean isEmpty();
 	public int getProjectId();
 	public void updateDetails(UpdateProjectDto projectInfo,Integer projectId);
-	public void updateSprint(int projectId, String sprint);
+	public void updateSprint(int projectId);
 	
 }

@@ -1,5 +1,6 @@
 package com.lti.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Autowired
 	private ProjectRepository projectRepoObj;
+
 	
 	private Projects project = new Projects();
 	@Override
@@ -28,7 +30,7 @@ public class ProjectServiceImpl implements ProjectService {
 			project.setProjectId(projectId+1);
 		}
 		
-		project.setSprint("Sprint One");
+		project.setSprint(1);
 		project.setApplicationName(projectInfo.getApplicationName());
 		project.setClient(projectInfo.getClient());
 		project.setProjectName(projectInfo.getProjectName());
@@ -40,6 +42,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void deleteProject(int projectId) {
 		// TODO Auto-generated method stub
+		project = projectRepoObj.getProjectById(projectId);
 		projectRepoObj.updateProjectStatus(projectId);
 	}
 	@Override
@@ -58,8 +61,8 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectRepoObj.getProjectById(projectId);
 	}
 	@Override
-	public void updateSprint(int projectId, String sprint) {
+	public void updateSprint(int projectId) {
 		// TODO Auto-generated method stub
-		projectRepoObj.updateSprint(projectId,sprint);
+		projectRepoObj.updateSprint(projectId);
 	}
 }

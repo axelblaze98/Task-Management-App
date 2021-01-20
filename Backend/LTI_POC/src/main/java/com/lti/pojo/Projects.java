@@ -31,7 +31,7 @@ public class Projects {
 	@Column(length=20,nullable=false)
 	private String client;
 	@Column
-	private String sprint;
+	private Integer sprint;
 	@Column
 	private String status;
 	
@@ -90,10 +90,10 @@ public class Projects {
 	public void setClient(String client) {
 		this.client = client;
 	}
-	public String getSprint() {
+	public Integer getSprint() {
 		return sprint;
 	}
-	public void setSprint(String sprint) {
+	public void setSprint(Integer sprint) {
 		this.sprint = sprint;
 	}
 	public String getStatus() {

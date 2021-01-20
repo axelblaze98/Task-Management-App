@@ -12,5 +12,5 @@ public interface ProjectService {
 	public List<Projects> getAllProjects();
 	public void updateProjectDetails(UpdateProjectDto projectInfo,Integer projectId);
 	public Projects getProjectById(int projectId);
-	public void updateSprint(int projectId, String sprint);
+	public void updateSprint(int projectId);
 }

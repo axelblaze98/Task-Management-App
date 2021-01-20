@@ -40,7 +40,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 	public void updateProjectStatus(int projectId) {
 		// TODO Auto-generated method stub
 		project=getProjectById(projectId);
-		
+		project.getEmployees().clear();
 		project.setStatus("INACTIVE");
 	}
 
@@ -78,9 +78,9 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 
 	@Override
 	@Transactional
-	public void updateSprint(int projectId, String sprint) {
+	public void updateSprint(int projectId) {
 		// TODO Auto-generated method stub
 		project=getProjectById(projectId);
-		project.setSprint(sprint);
+		project.setSprint(project.getSprint()+1);
 	}
 }
