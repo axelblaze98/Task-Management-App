@@ -16,7 +16,7 @@ export class EmployeeDetailsComponent implements OnInit {
   empId:string;
   empInfo:Employees = new Employees();
   Tasks;
-  taskStatus;
+  taskStatus:string;
   statusBtn:boolean=false;
 
   ngOnInit(): void {

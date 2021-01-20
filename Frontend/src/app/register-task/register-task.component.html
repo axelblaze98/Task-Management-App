@@ -4,31 +4,46 @@
     </div>
     <div class="wrapper">
         <div class="card" style="width:50%">
-            <form #registerTask (ngSubmit)="register()">
+            <form #taskInfo="ngForm" (ngSubmit)="register()">
                 <div class="form-group row">
                     <label for="taskJiraId" class="col-sm-4 col-form-label">Task Jira Id<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" name="taskJiraId" placeholder="Enter Task Jira Id"
+                        <input required maxlength=8 #jiraId="ngModel" [class.is-invalid]="jiraId.invalid && jiraId.touched" class="form-control" type="text" name="taskJiraId" placeholder="Enter Task Jira Id"
                         [(ngModel)]="taskDetails.taskJiraId"/>
+                        <div *ngIf="jiraId.invalid && jiraId.touched">
+                            <div *ngIf="jiraId.errors.required">
+                                <small class="text-danger">Jira Id is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="taskDescription" class="col-sm-4 col-form-label">Task Name<span style="color:red" >*</span>
+                    <label for="taskName" class="col-sm-4 col-form-label">Task Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control"  type="text" name="taskDescription" placeholder="Enter Task Description" [(ngModel)]="taskDetails.taskDescription"/>
+                        <input required maxlength=30 #taskName="ngModel" [class.is-invalid]="taskName.invalid && taskName.touched" class="form-control" type="text" class="form-control"  type="text" name="taskname" placeholder="Enter Task Name" [(ngModel)]="taskDetails.taskDescription"/>
+                        <div *ngIf="taskName.invalid && taskName.touched">
+                            <div *ngIf="taskName.errors.required">
+                                <small class="text-danger">Task Name is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="task" class="col-sm-4 col-form-label">Task Description<span style="color:red" >*</span>
+                    <label for="taskDescription" class="col-sm-4 col-form-label">Task Description<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" name="task" placeholder="Enter Task" [(ngModel)]="taskDetails.task" row="2"></textarea>
+                        <textarea required maxlength=200 #taskDescription="ngModel" [class.is-invalid]="taskDescription.invalid && taskDescription.touched" class="form-control" name="taskDescription" placeholder="Enter Task Description" [(ngModel)]="taskDetails.task" row="2"></textarea>
+                        <div *ngIf="taskDescription.invalid && taskDescription.touched">
+                            <div *ngIf="taskDescription.errors.required">
+                                <small class="text-danger">Task Description is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="wrapper">
-                    <button type ="submit" class="form-control btn btn-primary" style="width: 100px;margin-right:3px" >Register</button>
+                    <button [disabled]="taskInfo.form.invalid" type ="submit" class="form-control btn btn-primary" style="width: 100px;margin-right:3px" >Register</button>
                     <button type ="reset" class="form-control btn btn-secondary" style="width: 100px;" >Clear</button>
                 </div>
                 <div class="wrapper">

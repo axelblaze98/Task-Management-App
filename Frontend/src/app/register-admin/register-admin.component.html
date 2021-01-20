@@ -4,32 +4,59 @@
     </div>
     <div class="wrapper">
         <div class="card" style="width:50%">
-            <form #registerAdmin= "ngForm" (ngSubmit)="register()">
+            <form #adminInfo= "ngForm" (ngSubmit)="register()">
                 <div class="form-group row">
                     <label for="adminUsername" class="col-sm-4 col-form-label">User Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control"type="text" name="adminUsername" placeholder="Enter Username" 
+                        <input required maxlength=10 minlength=5 #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control"type="text" name="adminUsername" placeholder="Enter Username" 
                         [(ngModel)]="adminInfo.username"/>
+                        <div *ngIf="username.invalid && username.touched">
+                            <div *ngIf="username.errors.required">
+                                <small class="text-danger">Username is required.</small>
+                            </div>
+                            <div *ngIf="username.errors.maxlength">
+                                <small class="text-danger">Username Maxlength is 10</small>
+                            </div>
+                            <div *ngIf="username.errors.minlength">
+                                <small class="text-danger">Username must be 5 characters long</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="adminPassword" class="col-sm-4 col-form-label">Password<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control"  type="password" name="adminPassword" placeholder="Enter Password" [(ngModel)]="adminInfo.password"/>
+                        <input required maxlength="10" minlength="6" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" class="form-control"  type="password" name="adminPassword" placeholder="Enter Password" [(ngModel)]="adminInfo.password"/>
+                        <div *ngIf="password.invalid && password.touched">
+                            <div *ngIf="password.errors.required">
+                                <small class="text-danger">Password is required.</small>
+                            </div>
+                            <div *ngIf="password.errors.maxlength">
+                                <small class="text-danger">Password Maxlength is 10</small>
+                            </div>
+                            <div *ngIf="password.errors.minlength">
+                                <small class="text-danger">Password must be 6 characters long</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="adminName" class="col-sm-4 col-form-label">Full Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" name="adminName" placeholder="Enter Full Name"
+                        <input required [class.is-invalid]="name.invalid && name.touched" #name="ngModel" class="form-control" type="text" name="adminName" placeholder="Enter Full Name"
                         [(ngModel)]="adminInfo.fullName"/>
+                        <div *ngIf="name.invalid && name.touched">
+                            <div *ngIf="name.errors.required">
+                                <small class="text-danger">Name is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="wrapper">
-                    <button type ="submit" class="form-control btn btn-primary" style="width: 100px;">Register</button>
+                    <button [disabled]="adminInfo.form.invalid"type ="submit" class="form-control btn btn-primary" style="width: 100px;">Register</button>
                 </div>
                 <div class="wrapper">
                     <button type ="button" class="form-control btn btn-secondary" style="margin-bottom: 20px; width: 70px;" routerLink="/">Back</button>

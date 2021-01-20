@@ -4,39 +4,59 @@
     </div>
     <div class="wrapper">
         <div class="card" style="width:50%">
-            <form #registerTeam="ngForm" (ngSubmit)="register()">
+            <form #teamInfo="ngForm" (ngSubmit)="register()">
                 <div class="form-group row">
                     <label for="projectName" class="col-sm-4 col-form-label">Project Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control"  type="text" name="projectName" placeholder="Enter Project Name" 
+                        <input required maxlength=30 #projectName="ngModel" [class.is-invalid]="projectName.invalid && projectName.touched"class="form-control"  type="text" name="projectName" placeholder="Enter Project Name" 
                         [(ngModel)]="projectInfo.projectName"/>
+                        <div *ngIf="projectName.invalid && projectName.touched">
+                            <div *ngIf="projectName.errors.required">
+                                <small class="text-danger">Project Name is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="applicationName" class="col-sm-4 col-form-label">Application Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control"  type="text" name="applicationName" placeholder="Enter Application Name" [(ngModel)]="projectInfo.applicationName"/>
+                        <input required maxlength=30 #app="ngModel" [class.is-invalid]="app.invalid && app.touched" class="form-control"  type="text" name="applicationName" placeholder="Enter Application Name" [(ngModel)]="projectInfo.applicationName"/>
+                        <div *ngIf="app.invalid && app.touched">
+                            <div *ngIf="app.errors.required">
+                                <small class="text-danger">Application Name is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="projectLocation" class="col-sm-4 col-form-label">Team Location<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" name="projectLocation" placeholder="Enter Project Location" [(ngModel)]="projectInfo.projectLocation"/>
+                        <input required maxlength=20 #location ="ngModel" [class.is-invalid]="location.invalid && location.touched" class="form-control" type="text" name="projectLocation" placeholder="Enter Project Location" [(ngModel)]="projectInfo.projectLocation"/>
+                        <div *ngIf="location.invalid && location.touched">
+                            <div *ngIf="location.errors.required">
+                                <small class="text-danger">Location is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="client" class="col-sm-4 col-form-label">Client Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" name="client" placeholder="Enter Client Name"
+                        <input required maxlength=20 #client="ngModel" [class.is-invalid]="client.invalid && client.touched"class="form-control" type="text" name="client" placeholder="Enter Client Name"
                         [(ngModel)]="projectInfo.client"/>
+                        <div *ngIf="client.invalid && client.touched">
+                            <div *ngIf="client.errors.required">
+                                <small class="text-danger">Client is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="wrapper">
-                    <button type ="submit" class="form-control btn btn-primary" style="width: 100px;margin-right:3px" >Register</button>
+                    <button [disabled]="teamInfo.form.invalid" type ="submit" class="form-control btn btn-primary" style="width: 100px;margin-right:3px" >Register</button>
                     <button type ="reset" class="form-control btn btn-secondary" style="width: 100px;" >Clear</button>
                 </div>
                 <div class="wrapper">

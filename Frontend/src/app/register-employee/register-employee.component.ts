@@ -22,14 +22,9 @@ export class RegisterEmployeeComponent implements OnInit {
 
 
   register(){
-    if(this.empInfo.designation==undefined){
-      alert("Select a Designation")
-    }
-    else{
     this.http.post<Status>("http://localhost:8086/registerEmployee",this.empInfo)
     .subscribe(res =>{
       alert(res.message);
     })
   }
-}
 }

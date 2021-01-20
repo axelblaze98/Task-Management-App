@@ -12,19 +12,22 @@
                     <label for="adminUserName" class="col-sm-4 col-form-label">User Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input #username="ngModel" required [class.is-invalid]="username.invalid && username.touched" class="form-control" type="text" name="adminUserName" placeholder="Enter Your Username" [(ngModel)]="credential.username"/>
-                        <small [class.d-none]="username.valid || username.untouched" class="text-danger">
-                            User Name is required
-                        </small> 
+                        <input #username="ngModel" [class.is-invalid]="username.invalid && username.touched" required class="form-control" type="text" name="adminUserName" placeholder="Enter Your Username" [(ngModel)]="credential.username"/>
+                        <div *ngIf="username.invalid && username.touched">
+                            <div *ngIf="username.errors.required">
+                                <small class="text-danger">Username is required.</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="Password" class="col-sm-4 col-form-label "> Password <span style="color:red" >*</span></label>   
                     <div class="col-sm-6">
                         <input required #password="ngModel" [class.is-invalid]="password.invalid && password.touched" class="form-control" type="password" name="Password"  placeholder="Enter Your Password" [(ngModel)]="credential.password"/>
-                        <div *ngIf= "password.errors && (password.invalid && password.touched)">
-                            <small  class ="text-danger" *ngIf="password.errors.required">
-                                Password is required</small>
+                        <div *ngIf="password.invalid && password.touched">
+                            <div *ngIf="password.errors.required">
+                                <small class="text-danger">Password is required.</small>
+                            </div>
                         </div>
                     </div>
                 </div>
