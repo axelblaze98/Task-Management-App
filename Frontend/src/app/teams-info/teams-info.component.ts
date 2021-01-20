@@ -17,6 +17,23 @@ export class TeamsInfoComponent implements OnInit {
   name:string;
   projectSprint:String;
   updateBtn:boolean=false;
+  ones:string[]=[
+    "Zero","One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+        "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen",
+        "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+  ]
+  tens:string[]=[
+    "",
+    "",
+    "Twenty",
+    "Thrity",
+    "Forty",
+    "Fifty",
+    "Sixty",
+    "Seventy",
+    "Eighty",
+    "Ninety",
+  ]
 
   ngOnInit(): void {
     this.name=sessionStorage.getItem('name');
@@ -56,13 +73,7 @@ export class TeamsInfoComponent implements OnInit {
   }
 
   updateSprint(projectId){
-    
-    if(this.updateBtn){
-    if(this.projectSprint==undefined){
-        alert("Select a Sprint")
-    }
-    else{
-    this.http.put<Status>("http://localhost:8086/updateSprint?projectId="+projectId+"&sprint="+this.projectSprint,{})
+      this.http.put<Status>("http://localhost:8086/updateSprint?projectId="+projectId,{})
     .subscribe((res)=>{
       if(res.status=="SUCCESS"){
         alert(res.message);
@@ -72,8 +83,18 @@ export class TeamsInfoComponent implements OnInit {
       this.updateBtn=!this.updateBtn;
     })
   }
-  }
-  else this.updateBtn=!this.updateBtn;
+
+  printSprint(Sprint){
+    return "Sprint "+this.convertNumberToString(Sprint);
   }
 
+  convertNumberToString(num){
+    if(num<20){
+      return this.ones[num];
+    }
+    else {
+      if(num%10==0) return this.tens[num/10];
+      else return this.tens[Math.floor(num/10)]+" "+this.ones[num%10];
+    }
+  }
 }
