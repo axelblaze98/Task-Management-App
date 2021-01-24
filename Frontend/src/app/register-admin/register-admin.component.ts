@@ -12,14 +12,17 @@ export class RegisterAdminComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   adminInfo:RegisterAdmin = new RegisterAdmin();
+
   ngOnInit(): void {
   }
 
-  register(){
+  register(form){
+  console.log(this.adminInfo)
     this.http.post<Status>("http://localhost:8086/register",this.adminInfo)
     .subscribe((res)=>{
       alert(res.message)
     })
+    form.reset();
   }
 
 }

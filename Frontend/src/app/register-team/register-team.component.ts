@@ -16,11 +16,12 @@ export class RegisterTeamComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register()
+  register(form)
   {
     this.http.post<Status>('http://localhost:8086/addProject',this.projectInfo)
     .subscribe(res=>{
       alert(res.message);
     })
+    form.reset();
   }
 }

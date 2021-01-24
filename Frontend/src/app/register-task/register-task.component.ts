@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AddTask } from '../classes';
 
@@ -9,6 +9,8 @@ import { AddTask } from '../classes';
 })
 export class RegisterTaskComponent implements OnInit {
 
+  @ViewChild('jiraId') jiraId;
+
   constructor(private http: HttpClient) { }
 
   empId:number;
@@ -18,11 +20,12 @@ export class RegisterTaskComponent implements OnInit {
     this.empId=history.state.empId;
   }
 
-  register(){
+  register(form){
     this.http.post<any>("http://localhost:8086/addTask?empId="+this.empId,this.taskDetails)
     .subscribe((res)=>{
       alert(res.message);
     })
+    form.reset();
   }
 
 }

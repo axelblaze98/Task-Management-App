@@ -21,10 +21,11 @@ export class RegisterEmployeeComponent implements OnInit {
 
 
 
-  register(){
+  register(form){
     this.http.post<Status>("http://localhost:8086/registerEmployee",this.empInfo)
     .subscribe(res =>{
       alert(res.message);
     })
+    form.reset();
   }
 }

@@ -4,12 +4,12 @@
     </div>
     <div class="wrapper">
         <div class="card" style="width:50%">
-            <form #adminInfo= "ngForm" (ngSubmit)="register()">
+            <form #admin= "ngForm" (ngSubmit)="register(admin)">
                 <div class="form-group row">
                     <label for="adminUsername" class="col-sm-4 col-form-label">User Name<span style="color:red" >*</span>
                     </label>
                     <div class="col-sm-6">
-                        <input required maxlength=10 minlength=5 #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control"type="text" name="adminUsername" placeholder="Enter Username" 
+                        <input required maxlength=10 #username="ngModel" minlength=5 class="form-control"type="text" name="adminUsername" placeholder="Enter Username" 
                         [(ngModel)]="adminInfo.username"/>
                         <div *ngIf="username.invalid && username.touched">
                             <div *ngIf="username.errors.required">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="wrapper">
-                    <button [disabled]="adminInfo.form.invalid"type ="submit" class="form-control btn btn-primary" style="width: 100px;">Register</button>
+                    <button [disabled]="admin.form.invalid"type ="submit" class="form-control btn btn-primary" style="width: 100px;">Register</button>
                 </div>
                 <div class="wrapper">
                     <button type ="button" class="form-control btn btn-secondary" style="margin-bottom: 20px; width: 70px;" routerLink="/">Back</button>
